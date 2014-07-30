@@ -1,54 +1,109 @@
 function Calculator() {
-    this.stack = [];
-    this.error = "calculator is empty"
-
+    var stack = [];
+    var error = "calculator is empty"
 
 	this.push = function(number) {
-			this.stack.push(number);
+			stack.push(number);
 	}
-	    
+
+	this.plus = function() {
+	    if (stack.length < 2) {
+			throw error;
+		} else {
+			result = stack.pop() + stack.pop(); 
+			stack.push(result); 
+		}
+	}
+
 	this.value = function() {
-	    return this.stack[this.stack.length-1]; //gives last item on the stack
+	    return stack[stack.length-1]; //gives last item on the stack
 	}
 
-	this.plus = function(input) {
-	    if (this.stack.length < 2) {
-			throw this.error;
+	this.minus = function() {
+	    if (stack.length < 2) {
+			throw error;
 		} else {
-			result = this.stack.pop() + this.stack.pop(); 
-			this.stack.push(result); 
+			result = -stack.pop() + stack.pop(); 
+			stack.push(result); 
 		}
 	}
 
-	this.minus = function(input) {
-	    if (this.stack.length < 2) {
-			throw this.error;
+	this.divide = function() {
+	    if (stack.length < 2) {
+			throw error;
 		} else {
-			result = -this.stack.pop() + this.stack.pop(); 
-			this.stack.push(result); 
-		}
-	}
-
-	this.divide = function(input) {
-	    if (this.stack.length < 2) {
-			throw this.error;
-		} else {
-			var first = this.stack.pop();
-			var second = this.stack.pop();
+			var first = stack.pop();
+			var second = stack.pop();
 			result = second / first; 
-			this.stack.push(result); 
+			stack.push(result); 
 		}
 	}
 
-	this.times = function(input) {
-	    if (this.stack.length < 2) {
-			throw this.error;
+	this.times = function() {
+	    if (stack.length < 2) {
+			throw error;
 		} else {
-			result = this.stack.pop() * this.stack.pop(); 
-			this.stack.push(result); 
+			result = stack.pop() * stack.pop(); 
+			stack.push(result); 
 		}
 	}
 }
+
+
+//Nimit's solution
+// var Calculator = function(){
+// 	var stack = [];
+ 
+// 	var popAndCompute = function(operation){
+// 		if(stack.length < 2){
+// 			throw("calculator is empty");
+// 		};
+ 
+// 		var operand1 = stack.pop();
+// 		var operand2 = stack.pop();
+// 		var result = operation(operand1, operand2);
+// 		stack.push(result);
+ 
+// 	};
+ 
+// 	this.value = function(){
+// 		return stack[stack.length-1];
+// 	};
+ 
+// 	this.push = function(num){
+// 		stack.push(num);
+// 	};
+ 
+// // *** OPERATIONS ***
+ 
+// 	this.plus = function(){
+ 
+// 		var sum = function(operand1, operand2){
+// 			return operand1 + operand2;
+// 		};
+// 		popAndCompute(sum);
+// 	};
+ 
+// 	this.minus = function(){
+// 		var difference = function(operand1, operand2){
+// 			return operand2 - operand1;
+// 		};
+// 		popAndCompute(difference);
+// 	};
+ 
+// 	this.divide = function(){
+// 		popAndCompute(function(first,second){
+// 			return second/first;
+// 		});
+// 	};
+ 
+// 	this.times = function(){
+// 		popAndCompute(function(first,second){
+// 			return first * second;
+// 		});
+// 	};
+// }
+
 
 
 

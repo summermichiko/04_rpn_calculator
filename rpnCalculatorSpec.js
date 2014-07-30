@@ -3,7 +3,7 @@ describe("Calculator using reverse polish notation", function() {
   var calculator;
   
   beforeEach(function(){ 
-    calculator = new Calculator();
+    calculator = new Calculator(); //create a constructor function
   });
   
   it("adds two numbers", function() {
